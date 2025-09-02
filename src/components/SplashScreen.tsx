@@ -31,7 +31,7 @@ export const SplashScreen = () => {
         >
           {/* Logo central */}
           <motion.img
-            src="/GooGroupsLogo.png"
+            src="/logogoogroups.png"
             alt="Logo GooGroups"
             className="w-48 h-48 object-contain"
           />
