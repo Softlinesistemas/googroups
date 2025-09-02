@@ -14,7 +14,7 @@ const participants = [
 // Função para definir cor por usuário
 const getUserColor = (name: string, role: string) => {
   if (role === 'admin') return 'text-[#FF7F50]'; // Cor Petra fixa para ADM
-  const colors = ['text-blue-600', 'text-orange-600', 'text-purple-600', 'text-pink-600'];
+  const colors = ['text-blue-600', 'text-green-600', 'text-purple-600', 'text-pink-600'];
   const index = participants.findIndex((p) => p.name === name);
   return colors[(index + 1) % colors.length]; // +1 pra pular a cor ADM
 };

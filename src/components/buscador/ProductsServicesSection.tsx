@@ -77,7 +77,7 @@ export const ProductsServicesSection = () => {
             DELIVERY / TIPOS DE ENTREGA
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-2 gap-3">
             {opcoesEntrega.map((opcao) => {
               const isSelected = entregaSelecionada.includes(opcao.value);
               return (
@@ -88,7 +88,7 @@ export const ProductsServicesSection = () => {
                   className={cn(
                     "w-full border rounded-lg px-4 py-2 text-sm font-medium text-center transition-all",
                     isSelected
-                      ? "bg-orange-600 text-white border-orange-600 shadow"
+                      ? "bg-green-600 text-white border-green-600 shadow"
                       : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
                   )}
                 >
@@ -101,7 +101,7 @@ export const ProductsServicesSection = () => {
 
         {/* Público Alvo */}
         <div className="space-y-2">
-          <div className="bg-orange-600 text-white text-center py-2 rounded font-semibold">
+          <div className="bg-green-600 text-white text-center py-2 rounded font-semibold">
             CLASSE
           </div>
 

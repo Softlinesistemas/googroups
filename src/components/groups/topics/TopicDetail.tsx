@@ -94,7 +94,7 @@ export const TopicDetail: React.FC<Props> = ({ topic, onClose }) => {
             value={editDescription}
             onChange={(e) => setEditDescription(e.target.value)}
           />
-          <button onClick={handleEdit} className="px-2 py-1 bg-orange-500 text-white rounded mr-2">
+          <button onClick={handleEdit} className="px-2 py-1 bg-green-500 text-white rounded mr-2">
             Salvar
           </button>
           <button onClick={() => setEditing(false)} className="px-2 py-1 border rounded">

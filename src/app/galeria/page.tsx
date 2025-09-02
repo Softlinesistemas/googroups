@@ -88,10 +88,10 @@ export default function GaleriaPage() {
       {/* Header */}
       <header className="sticky top-0 z-10 bg-white border-b border-gray-200 shadow-sm">
         <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-          <h1 className="text-xl font-bold text-orange-700">GooGroups Gallery</h1>
+          <h1 className="text-xl font-bold text-green-700">GooGroups Gallery</h1>
           <button 
             onClick={() => setShowUploadModal(true)}
-            className="bg-orange-600 text-white p-2 rounded-full shadow-md"
+            className="bg-green-600 text-white p-2 rounded-full shadow-md"
           >
             <PlusCircle size={20} />
           </button>
@@ -131,7 +131,7 @@ export default function GaleriaPage() {
       <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-3 shadow-lg">
         <div className="max-w-6xl mx-auto px-4 flex justify-around">
           <button 
-            className={`flex flex-col items-center ${activeTab === 'gallery' ? 'text-orange-600' : 'text-gray-500'}`}
+            className={`flex flex-col items-center ${activeTab === 'gallery' ? 'text-green-600' : 'text-gray-500'}`}
             onClick={() => setActiveTab('gallery')}
           >
             <Home size={24} />
@@ -139,7 +139,7 @@ export default function GaleriaPage() {
           </button>
           
           <button 
-            className={`flex flex-col items-center ${activeTab === 'albums' ? 'text-orange-600' : 'text-gray-500'}`}
+            className={`flex flex-col items-center ${activeTab === 'albums' ? 'text-green-600' : 'text-gray-500'}`}
             onClick={() => setActiveTab('albums')}
           >
             <Grid size={24} />
@@ -147,7 +147,7 @@ export default function GaleriaPage() {
           </button>
           
           <button 
-            className={`flex flex-col items-center ${activeTab === 'profile' ? 'text-orange-600' : 'text-gray-500'}`}
+            className={`flex flex-col items-center ${activeTab === 'profile' ? 'text-green-600' : 'text-gray-500'}`}
             onClick={() => setActiveTab('profile')}
           >
             <User size={24} />

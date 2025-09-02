@@ -19,7 +19,7 @@ export const UploadArquivo = () => {
   };
 
   return (
-    <div className="border-2 border-orange-600 p-4 rounded-sm text-center max-w-md mx-auto">
+    <div className="border-2 border-green-600 p-4 rounded-sm text-center max-w-md mx-auto">
       <div>
         <h2 className="font-bold text-lg text-gray-800">ANEXAR ARQUIVO</h2>
         <p className="text-sm text-gray-600">

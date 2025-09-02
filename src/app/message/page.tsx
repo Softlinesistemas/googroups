@@ -88,7 +88,7 @@ const MessagePage: React.FC = () => {
             <div
               className={`rounded-lg px-3 py-2 text-sm shadow-md ${
                 msg.from === 'user'
-                  ? 'bg-orange-100 text-gray-800'
+                  ? 'bg-green-100 text-gray-800'
                   : 'bg-white text-gray-800'
               }`}
             >
@@ -114,7 +114,7 @@ const MessagePage: React.FC = () => {
         {showActions && (
           <div className="absolute bottom-14 left-4 bg-white border shadow-md rounded p-2 flex gap-3 z-20">
             <button onClick={() => setShowEmojiPicker(true)}><FiSmile size={24} className="text-orange-500" /></button>
-            <button onClick={onClickAttach}><FiCamera size={24} className="text-orange-500" /></button>
+            <button onClick={onClickAttach}><FiCamera size={24} className="text-green-500" /></button>
             <button onClick={onToggleRecording}>
               <FiMic size={24} className={`${recording ? 'text-red-500' : 'text-gray-700'}`} />
             </button>
@@ -138,7 +138,7 @@ const MessagePage: React.FC = () => {
           className="flex-1 text-sm px-3 py-2 border rounded-lg outline-none"
         />
 
-        <button onClick={sendMessage} type="button" className="p-2 text-orange-600">
+        <button onClick={sendMessage} type="button" className="p-2 text-green-600">
           {inputText.trim() ? <FiSend size={24} /> : <FiMic size={24} />}
         </button>
 

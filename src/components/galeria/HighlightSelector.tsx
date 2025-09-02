@@ -51,11 +51,11 @@ export default function HighlightSelector({ photos, setPhotos }: HighlightSelect
           <div key={photo.id} className="relative">
             <img
               src={photo.src}
-              className={`w-full aspect-square object-cover rounded-lg ${photo.isHighlighted ? "ring-2 ring-orange-500" : ""}`}
+              className={`w-full aspect-square object-cover rounded-lg ${photo.isHighlighted ? "ring-2 ring-green-500" : ""}`}
               onClick={() => toggleHighlight(photo.id)}
             />
             {photo.isHighlighted && (
-              <div className="absolute top-1 right-1 bg-orange-500 rounded-full w-5 h-5 flex items-center justify-center">
+              <div className="absolute top-1 right-1 bg-green-500 rounded-full w-5 h-5 flex items-center justify-center">
                 <span className="text-white text-xs">✓</span>
               </div>
             )}

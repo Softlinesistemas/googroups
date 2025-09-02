@@ -1,139 +1,207 @@
-'use client';
+"use client";
 
 import { useState } from "react";
-import { FiShare2, FiCopy, FiUserPlus, FiUserCheck } from "react-icons/fi";
+import {
+  FiUserPlus,
+  FiUserCheck,
+  FiMessageSquare,
+  FiPhone,
+  FiVideo,
+  FiUsers,
+} from "react-icons/fi";
 import Image from "next/image";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/common/Card";
-import { Button } from "@/utils/ui/Button"; // Importando seu componente Button
+import { MdDeliveryDining } from "react-icons/md";
+import { Card, CardAlter, CardContent } from "@/components/common/Card";
+import { Button } from "@/utils/ui/Button";
+import DescricaoCard from "./DescricaoFeed";
+import { IoShareSocialSharp } from "react-icons/io5";
 
 interface ProducerCardProps {
   mainImage: string;
   galleryImages: string[];
+  tipo?: "pessoal" | "grupo" | "fornecedor" | "empresa";
+  dataFundacao?: string;
 }
+
+const tipoConfig: Record<
+  string,
+  { nome: string; descricao: string; extraInfo?: string }
+> = {
+  pessoal: {
+    nome: "Maria Da Silva",
+    descricao: "Agricultora",
+    extraInfo: "Familia Canaa",
+  },
+  fornecedor: {
+    nome: "Sitio Canaã - Alimentos Orgânicos",
+    descricao: "Produtos: Alimentos e Bebidas",
+    extraInfo: "Alimentação escolar",
+  },
+  empresa: {
+    nome: "AgroTech Brasil LTDA",
+    descricao: "Tecnologia para o campo",
+    extraInfo: "Inovação agrícola",
+  },
+  grupo: {
+    nome: "TRATOR-BA_T-4_SISAL_CAR-0113",
+    descricao: "3. Veículo Coletivo - CONVÊNIO",
+    extraInfo: "Porte Leve",
+  },
+};
 
 export const ProducerCard: React.FC<ProducerCardProps> = ({
   mainImage,
   galleryImages,
+  tipo = "pessoal",
+  dataFundacao,
 }) => {
-  const [expanded, setExpanded] = useState(false);
-  const [isFriend, setIsFriend] = useState(false); // Estado para controlar amizade
+  const [isFriend, setIsFriend] = useState(false);
 
   const toggleFriendship = () => {
     setIsFriend(!isFriend);
-    // Aqui você pode adicionar a lógica para chamar sua API
   };
+
+  const isFornecedor = tipo === "fornecedor" || tipo === "empresa";
+  const isGrupo = tipo === "grupo";
+
+  const { nome, descricao, extraInfo } =
+    tipoConfig[tipo] || tipoConfig["pessoal"];
 
   return (
     <>
-      {/* Card 1: Informações básicas e galeria */}
-      <Card className="border shadow-sm mb-4">
-        <CardHeader className="p-3 border-b">
-          <div className="flex items-center">
-            <Image
-              src={mainImage}
-              alt="Foto principal"
-              width={60}
-              height={60}
-              className="rounded-md object-cover"
-            />
-            <div className="flex-1 ml-3">
-              <CardTitle className="text-sm font-semibold text-gray-800">
-                Sitio Canaã - Alimentos Organicos
-              </CardTitle>
-              <div className="text-xs text-gray-600">
-                Produtos: Alimentos + Bebidas
-              </div>
-              <div className="text-xs text-orange-600 font-medium">
-                Alimentação escolar
-              </div>
-            </div>
-            <FiShare2 className="text-gray-500 hover:text-gray-800 cursor-pointer" />
-          </div>
-        </CardHeader>
+      {/* Card 1: Cabeçalho com foto e dados */}
+      <div className="shadow-sm mb-1 mt-1 rounded-b-md">
+        <div className="flex items-start">
+          {/* Foto principal */}
+          <Image
+            src={mainImage}
+            alt={`Foto de ${nome}`}
+            width={96}
+            height={96}
+            className="h-24 w-24 rounded overflow-hidden flex-fit border-2 border-black cursor-pointer"
+          />
 
-        <CardContent className="p-0">
-          {/* Gallery */}
-          <div className="flex gap-1 px-3 pb-2">
-            {galleryImages.map((img, i) => (
-              <Image
-                key={i}
-                src={img}
-                alt={`foto-${i}`}
-                width={60}
-                height={40}
-                className="rounded-sm object-cover"
-              />
-            ))}
+          {/* Dados principais */}
+          <div className="flex-1 ml-3 items-start">
+            <div className="text-md font-bold text-black">{nome}</div>
+            <div className="text-md text-gray-900">{descricao}</div>
+            {extraInfo && (
+              <div className="text-md font-bold text-black">{extraInfo}</div>
+            )}
           </div>
 
-          {/* Botão Amigo - Usando seu componente Button */}
-          <div className="px-3 pb-2 flex justify-end">
-            <Button
-              onClick={toggleFriendship}
-              variant={isFriend ? "secondary" : "primary"}
-              size="sm"
-              className={`flex items-center gap-1 ${
-                isFriend 
-                  ? "border border-orange-600 text-orange-900" 
-                  : "text-white"
-              }`}
-            >
-              {isFriend ? (
-                <>
-                  <FiUserCheck size={14} />
-                  <span>Amigo</span>
-                </>
-              ) : (
-                <>
-                  <FiUserPlus size={14} />
-                  <span>Adicionar</span>
-                </>
+          {/* Ícones à direita */}
+          {(tipo === "pessoal" || isFornecedor) && (
+            <>
+              <div className="flex flex-col justify-between items-center mr-2 h-[90px]">
+                <IoShareSocialSharp
+                  size={24}
+                  className="text-gray-900 hover:text-green-900 cursor-pointer"
+                />
+                <FiUsers size={20} className="text-blue-600" />
+                <MdDeliveryDining size={22} className="text-[#e7c465]" />
+                {(isFornecedor || isGrupo) && (
+                <MdDeliveryDining size={22} className="text-red-500" />
               )}
-            </Button>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+
+      {/* Card 2: Ações */}
+      <CardAlter className=" shadow-sm mb-1">
+        <CardContent className="p-1 flex flex-row sm:items-center sm:justify-between">
+          {/* Ações à esquerda */}
+          <div className="flex sm:justify-start w-full gap-8 sm:w-auto">
+            {/* Mensagem sempre aparece */}
+            <button className="flex flex-col items-center text-green-700 hover:text-orange-500 text-xs">
+              <FiMessageSquare size={20} />
+              <span>Mensagem</span>
+            </button>
+
+            {/* Mostrar ligar e vídeo só para pessoa, fornecedor e empresa */}
+            {(tipo === "pessoal" || isFornecedor) && (
+              <>
+                <button className="flex flex-col items-center text-green-700 hover:text-orange-500 text-xs">
+                  <FiPhone size={20} />
+                  <span>Ligar</span>
+                </button>
+                <button className="flex flex-col items-center text-green-700 hover:text-orange-500 text-xs">
+                  <FiVideo size={20} />
+                  <span>Vídeo</span>
+                </button>
+              </>
+            )}
+
+            {/* Mostrar fundação apenas para grupos */}
+            {tipo === "grupo" && dataFundacao && (
+              <div className="ml-4 text-sm text-gray-700 font-medium whitespace-nowrap">
+                Fundação:{" "}
+                <span className="text-green-800 font-bold">{dataFundacao}</span>
+              </div>
+            )}
+          </div>
+
+          {/* Ações à direita */}
+          <div className="flex justify-end sm:gap-4 w-full sm:w-auto mt-1 sm:mt-0 items-center">
+            {/* Se for pessoa, fornecedor ou empresa, botão Amigo */}
+            {(tipo === "pessoal" || isFornecedor) && (
+              <Button
+                onClick={toggleFriendship}
+                variant={isFriend ? "friend" : "primary"}
+                size="sm"
+                className={`ml-2 flex items-center gap-1 px-2 py-1 text-2xl ${
+                  isFriend
+                    ? "border border-green-600 text-green-900"
+                    : "text-white"
+                }`}
+              >
+                {isFriend ? (
+                  <>
+                    {/* <FiUserCheck size={14} /> */}
+                    <span>AMIGO</span>
+                  </>
+                ) : (
+                  <>
+                    {/* <FiUserPlus size={14} /> */}
+                    <span>Ser AMIGO</span>
+                  </>
+                )}
+              </Button>
+            )}
+
+            {/* Se for grupo, botão Participar do Grupo */}
+            {isGrupo && (
+              <Button
+                onClick={toggleFriendship}
+                variant={isFriend ? "friend" : "primary"}
+                size="sm"
+                className={`ml-2 flex items-center gap-1 px-2 py-1 text-2xl ${
+                  isFriend
+                    ? "border border-green-600 text-green-900"
+                    : "text-white"
+                }`}
+              >
+                {isFriend ? (
+                  <>
+                    {/* <FiUserCheck size={14} /> */}
+                    <span>Participando</span>
+                  </>
+                ) : (
+                  <>
+                    {/* <FiUserPlus size={14} /> */}
+                    <span>Participar</span>
+                  </>
+                )}
+              </Button>
+            )}
           </div>
         </CardContent>
-      </Card>
+      </CardAlter>
 
-      {/* Card 2: Descrição */}
-      <Card className="border shadow-sm">
-        <CardContent className="p-0">
-          <div className="px-3 py-2 text-sm bg-gray-50 text-gray-800 relative">
-            <div>
-              {expanded ? (
-                <>
-                  Bem vindo ao Sitio Canaã Agricultura Orgânica!
-                  <br />
-                  Uma empresa de agricultura familiar em Imbituba - SC
-                  <br />
-                  Temos foco a produção orgânica agroecológica
-                  <br />
-                  Oferecemos Café da Manhã - Excursão, avise antes.
-                  <br />
-                  Temos Banana, Mandioca, Farinha...
-                  <br />
-                  De Setembro à Dezembro (Primavera) temos colheita...
-                </>
-              ) : (
-                <>
-                  Bem vindo ao Sitio Canaã Agricultura Orgânica!
-                  <br />
-                  Uma empresa de agricultura familiar em Imbituba - SC
-                  <br />
-                  Temos foco a produção orgânica agroecologica
-                  <br />
-                  Oferecemos Café da Manhã - Excursão, avise antes.
-                  <br />
-                  Temos Banana, Mandioca, Farinha...
-                  <span className="text-orange-600 cursor-pointer ml-1" onClick={() => setExpanded(true)}>
-                    Ver mais
-                  </span>
-                </>
-              )}
-            </div>
-            <FiCopy className="absolute top-2 right-2 text-gray-500 cursor-pointer" />
-          </div>
-        </CardContent>
-      </Card>
+      {/* Card 3: Descrição adicional */}
+      <DescricaoCard tipo={tipo} />
     </>
   );
 };

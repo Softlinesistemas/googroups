@@ -1,137 +1,145 @@
-
-import { Label } from '@/utils/ui/Label';
 import {
-  FaUser,
-  FaTransgenderAlt,
-  FaGraduationCap,
-  FaChild,
+  FaGenderless,
   FaUserFriends,
-  FaUserClock,
+  FaGraduationCap,
+  FaBirthdayCake,
   FaCalendarCheck,
-  FaArrowLeft,
-  FaArrowRight,
-} from 'react-icons/fa';
-import Input from '../common/Input';
+} from "react-icons/fa";
+import { useState } from "react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/utils/ui/Select";
+import { Input } from "@/utils/ui/Input";
+import { Label } from "@/utils/ui/Label";
 
-export const IdDemografica = () => {
+export function IdDemografica() {
+  const [participante, setParticipante] = useState(false);
+  const [nivelEscolar, setNivelEscolar] = useState("");
+
   return (
-    <div className="border-2 border-white bg-white p-6 rounded-lg space-y-6 shadow-md text-sm text-gray-800">
-
+    <div className="p-1text-green-800 space-y-3 text-sm sm:text-base">
       {/* GÊNERO */}
-      <div>
-        <Label className="flex items-center gap-2 font-bold text-orange-700 mb-2">
-          <FaUser className="text-orange-800" />
-          Gênero
-        </Label>
-        <div className="flex gap-4 flex-wrap">
-          <Label className="flex items-center gap-1">
-            <Input type="checkbox" /> Masculino
-          </Label>
-          <Label className="flex items-center gap-1">
-            <Input type="checkbox" /> Feminino
-          </Label>
-          <Label className="flex items-center gap-1">
-            <Input type="checkbox" /> LGBTQI+ <FaTransgenderAlt className="text-pink-600" />
-          </Label>
-        </div>
-      </div>
+      <Section title="GÊNERO" icon={<FaGenderless />}>
+        <CheckboxGroup options={["Masculino", "Feminino", "LGBTQI+"]} />
+      </Section>
 
       {/* RAÇA / COR */}
-      <div>
-        <Label className="flex items-center gap-2 font-bold text-orange-700 mb-2">
-          <FaUserFriends className="text-orange-800" />
-          Raça / Cor
-        </Label>
-        <div className="flex gap-4 flex-wrap">
-          <Label className="flex items-center gap-1">
-            <Input type="checkbox" /> Negra
-          </Label>
-          <Label className="flex items-center gap-1">
-            <Input type="checkbox" /> Parda
-          </Label>
-          <Label className="flex items-center gap-1">
-            <Input type="checkbox" /> Branca
-          </Label>
-          <Label className="flex items-center gap-1">
-            <Input type="checkbox" /> Indígena
-          </Label>
-        </div>
-      </div>
+      <Section title="RAÇA / COR" icon={<FaUserFriends />}>
+        <CheckboxGroup options={["Negra", "Parda", "Branca", "Indígena"]} />
+      </Section>
 
       {/* ESCOLARIDADE */}
-      <div>
-        <Label className="flex items-center gap-2 font-bold text-orange-700 mb-2">
-          <FaGraduationCap className="text-orange-800" />
-          Escolaridade
-        </Label>
-        <select className="w-full border borde-absolute border-orange-300 text-orange-700 font-bold py-2 px-3 rounded">
-          <option value="">Selecione...</option>
-          <option value="infantil">Educação Infantil</option>
-          <option value="fundamental1">Ensino Fundamental (1º ao 5º ano)</option>
-          <option value="fundamental2">Ensino Fundamental (6º ao 9º ano)</option>
-          <option value="medio">Ensino Médio</option>
-          <option value="tecnico">Curso Técnico</option>
-          <option value="superior">Ensino Superior</option>
-          <option value="especializacao">Especialização</option>
-          <option value="mestrado">Mestrado</option>
-          <option value="doutorado">Doutorado</option>
-          <option value="nao_estuda">Não está estudando</option>
-        </select>
-      </div>
+      <Select
+        value={nivelEscolar}
+        onChange={setNivelEscolar}
+        placeholder="Escolha o nível"
+      >
+        <SelectTrigger className="bg-white text-green-800 border-green-700">
+          <SelectValue />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="nao-alfabetizado">Não alfabetizado</SelectItem>
+          <SelectItem value="alfabetizacao-adulto">
+            Alfabetização de Adultos
+          </SelectItem>
+          <SelectItem value="fundamental-incompleto">
+            Ensino Fundamental Incompleto
+          </SelectItem>
+          <SelectItem value="fundamental-completo">
+            Ensino Fundamental Completo
+          </SelectItem>
+          <SelectItem value="medio-incompleto">
+            Ensino Médio Incompleto
+          </SelectItem>
+          <SelectItem value="medio-completo">Ensino Médio Completo</SelectItem>
+          <SelectItem value="tecnico">Curso Técnico</SelectItem>
+          <SelectItem value="superior-incompleto">
+            Ensino Superior Incompleto
+          </SelectItem>
+          <SelectItem value="superior-completo">
+            Ensino Superior Completo
+          </SelectItem>
+          <SelectItem value="especializacao">
+            Pós-graduação / Especialização
+          </SelectItem>
+          <SelectItem value="mestrado">Mestrado</SelectItem>
+          <SelectItem value="doutorado">Doutorado</SelectItem>
+          <SelectItem value="pos-doutorado">Pós-doutorado</SelectItem>
+        </SelectContent>
+      </Select>
 
       {/* FAIXA ETÁRIA */}
-      <div>
-        <Label className="flex items-center gap-2 font-bold text-orange-700 mb-2">
-          <FaChild className="text-orange-800" />
-          Faixa Etária
-        </Label>
-        <div className="flex gap-4 flex-wrap">
-          <Label className="flex items-center gap-1">
-            <Input type="checkbox" /> 👶 Infantil
-          </Label>
-          <Label className="flex items-center gap-1">
-            <Input type="checkbox" /> 🧒 Juvenil
-          </Label>
-          <Label className="flex items-center gap-1">
-            <Input type="checkbox" /> 🧑 Adulto
-          </Label>
-          <Label className="flex items-center gap-1">
-            <Input type="checkbox" /> 👴 Idoso
-          </Label>
-        </div>
-      </div>
+      <Section title="FAIXA ETÁRIA" icon={<FaBirthdayCake />}>
+        <CheckboxGroup options={["Infantil", "Juvenil", "Adulto", "Idoso"]} />
+      </Section>
 
-      {/* IDADE */}
-      <div>
-        <Label className="flex items-center gap-2 font-bold text-orange-700 mb-2">
-          <FaUserClock className="text-orange-800" />
-          Faixa de Idade
-        </Label>
-        <div className="flex items-center gap-2 bg-gray-100 border rounded p-2 shadow-sm w-fit">
-          <FaArrowLeft className="text-gray-500" />
+      {/* FAIXA DE IDADE */}
+      <Section title="FAIXA DE IDADE" icon={<FaBirthdayCake />}>
+        <div className="flex items-center gap-2">
           <Input
-            type="number"
-            className="w-16 border border-gray-300 rounded px-2 py-1 text-center"
             placeholder="mín"
+            className="w-full bg-white text-green-800 border-green-700"
           />
-          <span className="text-sm text-gray-700">até</span>
+          <span className="text-green-800 font-semibold">até</span>
           <Input
-            type="number"
-            className="w-16 border border-gray-300 rounded px-2 py-1 text-center"
             placeholder="máx"
+            className="w-full bg-white text-green-800 border-green-700"
           />
-          <FaArrowRight className="text-gray-500" />
         </div>
-      </div>
+      </Section>
 
-      {/* PARTICIPAÇÃO */}
+      {/* PARTICIPAÇÃO EM EVENTOS */}
       <div>
-        <Label className="flex items-center gap-2 font-bold text-orange-700">
-          <Input type="checkbox" />
-          <FaCalendarCheck className="text-orange-700" />
-          Participante de Eventos, Encontros, Desafios etc.
+        <Label className="flex flex-wrap items-start gap-2 font-bold text-green-700 cursor-pointer leading-snug">
+          <input
+            type="checkbox"
+            checked={participante}
+            onChange={() => setParticipante(!participante)}
+            className="accent-green-600 w-4 h-4 mt-1"
+          />
+          <FaCalendarCheck className="text-green-700 mt-[2px]" />
+          <span className="block break-words max-w-[230px] sm:max-w-full uppercase">
+            Participante de Eventos, Encontros, Desafios etc.
+          </span>
         </Label>
       </div>
     </div>
   );
-};
+}
+
+// COMPONENTE DE SEÇÃO COM TÍTULO E ÍCONE
+const Section = ({
+  title,
+  icon,
+  children,
+}: {
+  title: string;
+  icon: React.ReactNode;
+  children: React.ReactNode;
+}) => (
+  <div>
+    <h4 className="flex items-center gap-2 font-bold text-green-800 uppercase text-xs sm:text-sm mb-2">
+      {icon} {title}
+    </h4>
+    {children}
+  </div>
+);
+
+// COMPONENTE DE GRUPO DE CHECKBOXES PADRONIZADOS
+const CheckboxGroup = ({ options }: { options: string[] }) => (
+  <div className="flex">
+    {options.map((opt) => (
+      <label
+        key={opt}
+        className="flex items-center text-green-800 px-3 py-1 cursor-pointer text-sm sm:text-sm"
+      >
+        <input type="checkbox" className="mr-2 accent-green-600" />
+        {opt}
+      </label>
+    ))}
+  </div>
+);

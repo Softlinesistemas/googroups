@@ -1,6 +1,6 @@
 export default function ProfileBar() {
   return (
-    <div className="bg-orange-200 p-2 flex items-center justify-between">
+    <div className="bg-green-200 p-2 flex items-center justify-between">
       <div className="flex items-center gap-2">
         <img
           src="https://via.placeholder.com/40"

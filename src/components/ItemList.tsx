@@ -44,7 +44,7 @@ const handleChatClick = (index: number) => {
 
   return (
     <>
-      <ul className="flex-1 overflow-auto p-2 space-y-2 bg-gray-50">
+      <ul className="flex-1 overflow-auto p-2 space-y-2">
         {items.map((item, i) => {
           const isFavorite = favorites.includes(i);
           const isUnread = unreadItems.includes(i);
@@ -53,7 +53,7 @@ const handleChatClick = (index: number) => {
             <li
               key={i}
               className={`rounded-xl px-3 py-2 flex items-center shadow-sm transition ${
-                isUnread ? 'bg-orange-200' : 'bg-white hover:bg-gray-100'
+                isUnread ? 'bg-green-200' : 'bg-white hover:bg-gray-100'
               }`}
             >
               {/* Avatar - Só o avatar abre o modal */}

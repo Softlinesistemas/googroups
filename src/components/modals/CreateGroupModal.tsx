@@ -254,7 +254,7 @@ export const CreateGroupModal: React.FC<CreateGroupModalProps> = ({ isOpen, onCl
         {/* Botão Salvar */}
         <button
           onClick={handleSubmit}
-          className="w-full py-2 mt-3 bg-orange-600 text-white rounded hover:bg-orange-700 transition"
+          className="w-full py-2 mt-3 bg-green-600 text-white rounded hover:bg-green-700 transition"
         >
           SALVAR
         </button>
@@ -268,3 +268,5 @@ export const CreateGroupModal: React.FC<CreateGroupModalProps> = ({ isOpen, onCl
     </>
   );
 };
+
+export { AppModal };

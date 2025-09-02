@@ -12,7 +12,7 @@ import Image from 'next/image'
 
 // Simulando mensagens não lidas (depois você integra com backend ou contexto)
 const unreadMessages: any = {
-  '/amigos': false,
+  '/AMIGOS': false,
   '/grupos': true,
   '/fornecedores': false,
   '/empresa': true,
@@ -33,25 +33,25 @@ export const BottomNav: React.FC = () => {
   const navItems = [
     {
       icon: <FiUsers />,
-      label: 'Amigos',
+      label: 'AMIGOS',
       color: 'text-[#8F7E76]',
-      route: '/amigos',
+      route: '/AMIGOS',
     },
     {
       icon: <FiLayers />,
-      label: 'Grupos',
+      label: 'GRUPOS',
       color: 'text-[#8F7E76]',
       route: '/grupos',
     },
     {
       icon: <FiGlobe />,
-      label: 'Fornecedores',
+      label: 'FORNECEDORES',
       color: 'text-[#8F7E76]',
       route: '/fornecedores',
     },
     {
       icon: <FiDollarSign />,
-      label: 'Empresas',
+      label: 'EMPRESAS',
       color: 'text-[#8F7E76]',
       route: '/empresas',
     },
@@ -90,7 +90,7 @@ export const BottomNav: React.FC = () => {
             className="object-cover"
           />
         </div>
-        <span className="mt-0.5 text-[11px] font-medium text-gray-600">Central</span>
+        <span className="mt-0.5 text-[11px] font-medium text-gray-600">CENTRAL</span>
       </button>
 
       {/* Botões da nav com notificação se tiver mensagem */}

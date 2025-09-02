@@ -30,10 +30,10 @@ export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ onClose, isLoggedI
     }, 300);
   };
 
-  // Exemplos de navegação para cada item
+ 
   const handleNavigate = (path: string) => {
     handleClose();
-    router.push(path);
+    router.replace(`${path}`);
   };
 
   return (
@@ -89,18 +89,21 @@ export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ onClose, isLoggedI
               </button>
 
               {showCriarPerfilSubmenu && (
-                <div className="px-6 mt-2 flex flex-col gap-2 items-start text-orange-800 text-sm font-normal">
-                  <button className="flex items-center gap-2" onClick={() => handleNavigate('/criar-perfil/fornecedor-pf')}>
+                <div className="px-6 mt-2 flex flex-col gap-2 items-start text-green-800 text-sm font-normal">
+                  <button className="flex items-center gap-2" onClick={() => handleNavigate('/cadastro/fornecedor-pf')}>
                     <MdOutlinePerson /> Fornecedor (Pessoa Física)
                   </button>
-                  <button className="flex items-center gap-2" onClick={() => handleNavigate('/criar-perfil/fornecedor-cnpj-caf')}>
+                  <button className="flex items-center gap-2" onClick={() => handleNavigate('/cadastro/fornecedor-pj')}>
                     <MdStore /> Fornecedor (CNPJ ou CAF)
                   </button>
-                  <button className="flex items-center gap-2" onClick={() => handleNavigate('/criar-perfil/cnpj-instituicoes')}>
+                  <button className="flex items-center gap-2" onClick={() => handleNavigate('/cadastro/autonomo')}>
                     <MdOutlineCorporateFare /> CNPJ Instituições
                   </button>
-                  <button className="flex items-center gap-2" onClick={() => handleNavigate('/criar-perfil/cnpj-corporativo')}>
+                  <button className="flex items-center gap-2" onClick={() => handleNavigate('/cadastro/corporativo')}>
                     <MdOutlineCorporateFare /> CNPJ Corporativo
+                  </button>
+                  <button className="flex items-center gap-2" onClick={() => handleNavigate('/cadastro/cnpj-corporativo')}>
+                    <MdOutlineCorporateFare /> CAF
                   </button>
                 </div>
               )}
@@ -123,7 +126,7 @@ export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ onClose, isLoggedI
             <FiInfo /> Sobre o GooGroups
           </button>
 
-          <button className="flex items-center gap-2 text-left" onClick={() => handleNavigate('/ajuda')}>
+          <button className="flex items-center gap-2 text-left" onClick={() => handleNavigate('/faq')}>
             <FiHelpCircle /> Ajuda / FAQ
           </button>
 

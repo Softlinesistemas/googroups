@@ -79,7 +79,7 @@ const ForumTopic: React.FC = () => {
           <li
             key={topic.id}
             onClick={() => setSelectedTopic(topic)}
-            className={`border-b py-2 cursor-pointer hover:bg-gray-100 flex justify-between ${topic.resolved ? 'bg-orange-50' : ''}`}
+            className={`border-b py-2 cursor-pointer hover:bg-gray-100 flex justify-between ${topic.resolved ? 'bg-green-50' : ''}`}
           >
             <div>
               <h4 className="font-bold">{topic.title}</h4>
@@ -89,7 +89,7 @@ const ForumTopic: React.FC = () => {
             </div>
             <div className="flex items-center space-x-2">
               <span>👍 {topic.likes}</span>
-              {topic.resolved && <span className="text-orange-600 font-semibold">✔ Resolvido</span>}
+              {topic.resolved && <span className="text-green-600 font-semibold">✔ Resolvido</span>}
             </div>
           </li>
         ))}

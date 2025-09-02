@@ -56,14 +56,17 @@ export const SearchFilter: React.FC = () => {
   });
 
   return (
-    <div className="px-3 py-2 space-y-1 rounded-xl ">
+    <div className="w-full mt-2 m-1 mb-2 ml-1 rounded-xl  ">
       {/* Campo de busca */}
-      <div className="flex items-center bg-orange-300 rounded-lg shadow-sm px-4 py-3 border-2 border-orange-700">
-        <FiSearch className="text-balck shadow-md mr-2" />
+      <div className='mb-2 text-sm font-medium text-black justify-center flex'>
+      <p>Pesquise pelo Nome ou Usuário <span className="!text-green-700">GooGroups</span></p>
+      </div>
+      <div className="flex items-center bg-white rounded-lg shadow-sm px-4 py-3 border-2 border-green-700">
+        <FiSearch className="text-black shadow-md mr-2" />
         <input
           type="text"
-          placeholder="Procure por Pessoas, Empresas, Grupos ou Clientes"
-          className="w-full text-sm bg-orange-300 placeholder-orange-900 outline-none"
+          placeholder="Buscar AMIGOS, Grupos, Fornecedores ou Empresas."
+          className="w-full text-sm font-medium  bg-white  placeholder-gray-500 outline-none"
         />
       </div>
 

@@ -10,7 +10,7 @@ export type BuscadorResultado = {
   nome: string;
   descricao: string;
   localizacao: string;
-  tipo: 'amigos' | 'grupos' | 'fornecedores' | 'clientes'; // tipos esperados
+  tipo: 'AMIGOS' | 'grupos' | 'fornecedores' | 'clientes'; // tipos esperados
   categoria?: string;
   fotoUrl?: string; // opcional
 };
@@ -24,13 +24,13 @@ export const BuscadorResultado: React.FC<Props> = ({ results, filterType }) => {
   const router = useRouter();
 
   const handleClick = (item: BuscadorResultado) => {
-    const basePath = item.tipo === 'amigos' ? '/perfil'
+    const basePath = item.tipo === 'AMIGOS' ? '/perfil'
                    : item.tipo === 'grupos' ? '/grupo'
                    : '/entidade'; // genérico para fornecedores, clientes etc.
     router.push(`${basePath}/${item.id}`);
   };
 
-  const filterName = filterType === 'amigos' ? 'Amigos' :
+  const filterName = filterType === 'AMIGOS' ? 'AMIGOS' :
                      filterType === 'grupos' ? 'Grupos' :
                      filterType.charAt(0).toUpperCase() + filterType.slice(1);
 
@@ -45,7 +45,7 @@ export const BuscadorResultado: React.FC<Props> = ({ results, filterType }) => {
           transition={{ duration: 0.4 }}
           className="mt-6"
         >
-          <h3 className="text-lg font-bold mb-4 text-orange-800">
+          <h3 className="text-lg font-bold mb-4 text-green-800">
             Resultados encontrados em {filterName}:
           </h3>
 
@@ -59,7 +59,7 @@ export const BuscadorResultado: React.FC<Props> = ({ results, filterType }) => {
                 className="flex items-center gap-4 p-3 bg-white rounded-xl shadow border cursor-pointer hover:shadow-lg transition"
               >
                 {/* FOTO */}
-                <div className="w-14 h-14 relative rounded-sm overflow-hidden border-2 border-orange-600">
+                <div className="w-14 h-14 relative rounded-sm overflow-hidden border-2 border-green-600">
                   {item.fotoUrl ? (
                     <Image
                       src={item.fotoUrl}
@@ -68,7 +68,7 @@ export const BuscadorResultado: React.FC<Props> = ({ results, filterType }) => {
                       className="object-cover"
                     />
                   ) : (
-                    <div className="w-full h-full bg-orange-100 flex items-center justify-center text-orange-600 text-xl">
+                    <div className="w-full h-full bg-green-100 flex items-center justify-center text-green-600 text-xl">
                       {item.tipo === 'grupos' ? <FaUsers /> : <FaUserAlt />}
                     </div>
                   )}
@@ -76,11 +76,11 @@ export const BuscadorResultado: React.FC<Props> = ({ results, filterType }) => {
 
                 {/* INFO */}
                 <div className="flex flex-col">
-                  <p className="font-semibold text-orange-800">{item.nome}</p>
+                  <p className="font-semibold text-green-800">{item.nome}</p>
                   <p className="text-sm text-gray-700">{item.descricao}</p>
                   {item.localizacao && (
                     <p className="text-xs text-gray-500 flex items-center gap-1 mt-1">
-                      <FaMapMarkerAlt className="text-orange-600" />
+                      <FaMapMarkerAlt className="text-green-600" />
                       {item.localizacao}
                     </p>
                   )}

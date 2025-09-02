@@ -1,5 +1,6 @@
 'use client';
 
+import { Button } from '@/utils/ui/Button';
 import React from 'react';
 
 export type FilterType = 'todos' | 'favoritos' | 'nao_lidas';
@@ -11,33 +12,34 @@ type Props = {
 
 const MessageFilter: React.FC<Props> = ({ activeFilter, onFilterChange }) => {
   return (
-    <div className="flex justify-around bg-white p-2 box-border shadow-gray-300 shadow-md rounded-md sticky top-0 z-10">
-      <button
-        className={`px-4 py-1 rounded-full text-sm font-semibold ${
-          activeFilter === 'todos' ? 'bg-orange-600 text-white' : 'bg-gray-200 text-gray-800'
-        }`}
-        onClick={() => onFilterChange('todos')}
-      >
-        Todos
-      </button>
-
-      <button
-        className={`px-4 py-1 rounded-full text-sm font-semibold ${
-          activeFilter === 'favoritos' ? 'bg-orange-500 text-white' : 'bg-gray-200 text-gray-800'
+    <div className="flex justify-around mt-3 sticky top-0 z-10">
+      <Button
+        className={`px-4 py-1 rounded-full text-md font-semibold ${
+          activeFilter === 'favoritos' ? 'bg-orange-500 text-white' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
         }`}
         onClick={() => onFilterChange('favoritos')}
       >
         Favoritos
-      </button>
+      </Button>
+      <Button
+        className={`px-4 py-1 rounded-full text-md font-semibold ${
+          activeFilter === 'todos' ? 'bg-orange-500 text-white' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
+        }`}
+        onClick={() => onFilterChange('todos')}
+      >
+        Todos
+      </Button>
 
-      <button
-        className={`px-4 py-1 rounded-full text-sm font-semibold ${
-          activeFilter === 'nao_lidas' ? 'bg-gray-600 text-white' : 'bg-gray-200 text-gray-800'
+
+      <Button
+        className={`px-4 py-1 rounded-full text-md font-semibold ${
+          
+           activeFilter === 'nao_lidas' ? 'bg-orange-500 text-white' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
         }`}
         onClick={() => onFilterChange('nao_lidas')}
       >
         Não lidas
-      </button>
+      </Button>
     </div>
   );
 };

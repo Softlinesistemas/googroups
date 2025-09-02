@@ -19,7 +19,7 @@ export const Accordion: React.FC<AccordionProps> = ({
     <div className="mb-4 border-b border-gray-200 pb-3">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex w-full items-center justify-between py-2 text-left font-bold text-orange-800"
+        className="flex w-full items-center justify-between py-2 text-left font-bold text-green-800"
       >
         <span>{title}</span>
         <motion.div

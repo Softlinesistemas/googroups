@@ -32,7 +32,7 @@ export default function HomePage() {
           <>
             <QrCode qrValue={'https://exemplo.com'} onScanClick={handleScanClick} />
             {showScanner && <QrScanner onScanSuccess={handleScanSuccess} onClose={() => setShowScanner(false)} />}
-            {scanResult && <div className="p-4 bg-orange-100 text-orange-800">Resultado do QR: {scanResult}</div>}
+            {scanResult && <div className="p-4 bg-green-100 text-green-800">Resultado do QR: {scanResult}</div>}
           </>
         );
       case 'calendar':
@@ -44,9 +44,11 @@ export default function HomePage() {
       default:
         return (
           <>
+          <div className='px-1'>
             <ActionGrid />
             <SecondaryBanner />
             <SearchFilter />
+            </div>
           </>
         );
     }
@@ -54,9 +56,12 @@ export default function HomePage() {
 
   return (
     <ActionContext.Provider value={{ setActiveAction }}>
-      <MainBanner />
-      <UserSelect onActionSelect={setActiveAction} />
-      {renderActionComponent()}
+      
+        <MainBanner />
+        <div className='px-1'>
+        <UserSelect onActionSelect={setActiveAction} />
+        {renderActionComponent()}
+      </div>
     </ActionContext.Provider>
   );
 }

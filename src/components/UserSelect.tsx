@@ -1,123 +1,132 @@
-'use client'
+'use client';
 
 import React, { useState } from 'react';
 import { FiCalendar, FiClock, FiCloud, FiChevronDown } from 'react-icons/fi';
-import { MdOutlineQrCodeScanner } from "react-icons/md";
+import { MdOutlineQrCodeScanner } from 'react-icons/md';
+import { useRouter } from 'next/navigation';
 import QrCode from './QrCode';
 import { Button } from '@/utils/ui/Button';
 
 export const UserSelect: React.FC<{ onActionSelect?: (action: string) => void }> = ({ onActionSelect }) => {
-  const handleSearchClick = () => onActionSelect?.('qrcode');
-  const handleCalendarClick = () => onActionSelect?.('calendar');
-  const handleClockClick = () => onActionSelect?.('clock');
-  const handleCloudClick = () => onActionSelect?.('cloud');
+  const router = useRouter();
 
+  const users = [
+    { name: 'Sítio Canaã - Alimentos Orgânicos', avatar: '/avatar3.jpeg', type: 'fornecedor' },
+    { name: 'Maria da Silva', avatar: '/avatar2.jpeg', type: 'pessoal' },
+    { name: 'Grupo Raízes Sustentáveis', avatar: '/avatar1.jpeg', type: 'grupo' },
+    { name: 'AgroTech Ltda.', avatar: '/avatar4.jpeg', type: 'empresa' },
+  ];
+
+  const [selectedUser, setSelectedUser] = useState(users[1]);
   const [showDropdown, setShowDropdown] = useState(false);
   const [showQrCode, setShowQrCode] = useState(false);
 
-  const [selectedUser, setSelectedUser] = useState({
-    name: 'Maria da Silva',
-    role: '',
-  });
-
-  const users = [
-    { name: 'Sítio Canaã', role: 'Alimentos Orgânicos' },
-    { name: 'Maria da Silva', role: '' },
-    // { name: 'Maria Souza', role: 'Operadora' },
-    // { name: 'Carlos Lima', role: 'Supervisor' },
-  ];
+  // Estado para ícone/ação/avatar ativo
+  const [activeItem, setActiveItem] = useState<string | null>(null);
 
   const toggleDropdown = () => setShowDropdown(!showDropdown);
 
-  const selectUser = (user: { name: string; role: string }) => {
+  const selectUser = (user: typeof users[0]) => {
     setSelectedUser(user);
     setShowDropdown(false);
+    setActiveItem(`user-${user.name}`);
   };
 
-  const handleCloseQrCode = () => setShowQrCode(false); // Fechar QR Code se quiser
+  const handleCloseQrCode = () => setShowQrCode(false);
+
+  const handleActionClick = (action: string) => {
+    setActiveItem(action);
+    onActionSelect?.(action);
+  };
+
+  const goToFeed = () => {
+    if (!selectedUser?.type) return;
+    router.push(`/feed/${selectedUser.type}`);
+    setActiveItem(`user-${selectedUser.name}`); // Avatar também fica ativo
+  };
 
   return (
-    <div className="bg-orange-100 mt-1 p-1 w-full mx-auto rounded-md shadow-md">
-      {/* Renderiza o QR Code ou a seleção de usuário */}
+    <div className="w-full bg-[#e7c465] gap-2 pb-3 mt-2 px-2">
       {showQrCode ? (
-        <QrCode 
-          qrValue="https://seusite.com/usuario/123" 
-          onScanClick={handleCloseQrCode}
-        />
+        <QrCode qrValue="https://seusite.com/usuario/123" onScanClick={handleCloseQrCode} />
       ) : (
-        <div className="flex h-24">
+        <div className="flex h-28 w-full gap-1 pr-2">
           {/* Avatar */}
-          <div className="h-full rounded overflow-hidden flex-shrink-0">
-            <img
-              src="/avatar2.jpeg"
-              alt="Avatar"
-              className="w-full h-full object-cover"
-            />
+          <div
+            onClick={goToFeed}
+            className={`h-full w-24 rounded overflow-hidden flex-shrink-0 border-2 border-black cursor-pointer transition ${
+              activeItem === `user-${selectedUser.name}` ? 'ring-2 ring-orange-500' : ''
+            }`}
+            title={`Ir para o feed de ${selectedUser.type}`}
+          >
+            <img src={selectedUser.avatar} alt={selectedUser.name} className="w-full h-full object-cover" />
           </div>
 
-          {/* Conteúdo do lado direito */}
-          <div className="flex-1 flex flex-col justify-between ml-4">
-            {/* Select de usuário */}
-            <div className="relative">
-              <button
-                onClick={toggleDropdown}
-                className="w-full text-left px-1 py-1 bg-orange-200 rounded flex items-center justify-between"
-              >
-                <span className="text-sm font-medium">
-                  {selectedUser.name}  {selectedUser.role}
-                </span>
-                <FiChevronDown />
-              </button>
+          {/* Conteúdo ao lado */}
+          <div className="flex-1 flex flex-col">
+            {/* Dropdown de seleção */}
+            <div className="w-full">
+              <div className="relative w-full ml-2">
+                <button
+                  onClick={toggleDropdown}
+                  className="w-full text-left px-1 py-1 bg-white rounded flex items-center justify-between border-2 border-black"
+                >
+                  <span className="ml-2 text-md font-medium">{selectedUser.name}</span>
+                  <FiChevronDown />
+                </button>
 
-              {showDropdown && (
-                <div className="absolute top-full mt-1 w-full bg-white rounded shadow z-10">
-                  {users.map((user, index) => (
-                    <div
-                      key={index}
-                      onClick={() => selectUser(user)}
-                      className="px-3 py-2 hover:bg-orange-100 cursor-pointer text-sm"
-                    >
-                      {user.name} - {user.role}
-                    </div>
-                  ))}
-                </div>
-              )}
+                {showDropdown && (
+                  <div className="absolute top-full mt-1 w-full bg-white rounded shadow z-10">
+                    {users.map((user, index) => (
+                      <div
+                        key={index}
+                        onClick={() => selectUser(user)}
+                        className={`px-3 py-2 cursor-pointer text-sm transition ${
+                          activeItem === `user-${user.name}` ? 'bg-orange-500 text-white' : 'hover:bg-green-100'
+                        }`}
+                      >
+                        {user.name}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Ícones de ação */}
-            <div className="mt-2 flex justify-around text-gray-700 text-xl gap-2 pb-3">
+            <div className="mt-2 flex justify-around text-gray-700 text-xl gap-1 pb-3">
               <Button
-                onClick={handleSearchClick}
-                className="hover:text-orange-600 transition"
+                onClick={() => handleActionClick('qrcode')}
+                className={`transition ${activeItem === 'qrcode' ? 'text-orange-500' : 'hover:text-green-600'}`}
                 title="Buscar"
-                variant="userSelect"
+                variant="icon"
               >
                 <MdOutlineQrCodeScanner size={40} />
               </Button>
 
               <Button
-                onClick={handleCalendarClick}
-                className="hover:text-orange-600 transition"
+                onClick={() => handleActionClick('calendar')}
+                className={`transition ${activeItem === 'calendar' ? 'text-orange-500' : 'hover:text-green-600'}`}
                 title="Calendário"
-                variant="userSelect"
+                variant="icon"
               >
                 <FiCalendar size={40} />
               </Button>
 
               <Button
-                onClick={handleClockClick}
-                className="hover:text-orange-600 transition"
+                onClick={() => handleActionClick('clock')}
+                className={`transition ${activeItem === 'clock' ? 'text-orange-500' : 'hover:text-green-600'}`}
                 title="Relógio"
-                variant="userSelect"
+                variant="icon"
               >
                 <FiClock size={40} />
               </Button>
 
               <Button
-                onClick={handleCloudClick}
-                className="hover:text-orange-600 transition"
+                onClick={() => handleActionClick('cloud')}
+                className={`transition ${activeItem === 'cloud' ? 'text-orange-500' : 'hover:text-green-600'}`}
                 title="Nuvem"
-                variant="userSelect"
+                variant="icon"
               >
                 <FiCloud size={40} />
               </Button>

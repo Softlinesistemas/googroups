@@ -9,7 +9,7 @@ export const GeopoliticalDropdown = () => {
     <div className="my-3">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full bg-orange-200 px-4 py-2 text-sm font-medium rounded flex justify-between items-center"
+        className="w-full bg-green-200 px-4 py-2 text-sm font-medium rounded flex justify-between items-center"
       >
         Vínculos Sociais e Geopolíticos
         <FaChevronDown className={`transition-transform ${open ? 'rotate-180' : ''}`} />

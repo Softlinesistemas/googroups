@@ -120,7 +120,7 @@ export default function UploadForm({ onUpload, setPhotos }: UploadFormProps) {
         className={`w-full py-3 rounded-md font-semibold transition-colors ${
           files.length === 0
             ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-            : "bg-orange-600 text-white hover:bg-orange-700"
+            : "bg-green-600 text-white hover:bg-green-700"
         }`}
       >
         Publicar

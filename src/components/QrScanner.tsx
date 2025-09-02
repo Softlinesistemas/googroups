@@ -49,7 +49,7 @@ const QrScanner: React.FC<QrScannerProps> = ({ onScanSuccess, onClose }) => {
       <div id="reader" className="relative w-80 h-80 bg-black rounded-lg overflow-hidden">
         {/* Mira visual (borda) */}
         {!loading && (
-          <div className="absolute inset-0 border-4 border-orange-400 rounded-lg pointer-events-none"></div>
+          <div className="absolute inset-0 border-4 border-green-400 rounded-lg pointer-events-none"></div>
         )}
       </div>
 

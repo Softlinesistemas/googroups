@@ -51,7 +51,7 @@ export default function PhotoGallery({
             />
             
             {/* Overlay de interação */}
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-orange-300 to-transparent p-2">
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-green-300 to-transparent p-2">
               <div className="flex justify-between items-center">
                 <button 
                   onClick={(e) => {

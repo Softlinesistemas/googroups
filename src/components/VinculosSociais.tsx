@@ -50,10 +50,10 @@ export default function VinculosSociais() {
   };
 
   return (
-    <div className="relative w-full max-w-3xl" ref={dropdownRef}>
+    <div className="relative w-full max-w-3xl justify-center" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex justify-between items-center px-4 py-3 bg-orange-600 text-white rounded-lg shadow-md hover:bg-orange-700 transition-colors"
+        className="w-full flex justify-between items-center px-4 py-3 bg-green-600 text-white rounded-lg shadow-md hover:bg-green-700 transition-colors"
       >
         <span className="font-bold">VÍNCULOS SOCIAIS</span>
         <ChevronDown size={20} className={`transform ${isOpen ? 'rotate-180' : ''} transition-transform`} />
@@ -78,7 +78,7 @@ export default function VinculosSociais() {
                     onClick={() => setEconomiaSolidaria(opcao)}
                     className={`px-4 py-2 rounded-lg border ${
                       economiaSolidaria === opcao 
-                        ? 'bg-orange-100 border-orange-500 text-orange-700' 
+                        ? 'bg-green-100 border-green-500 text-green-700' 
                         : 'bg-gray-100 border-gray-300 text-gray-700'
                     }`}
                   >
@@ -99,7 +99,7 @@ export default function VinculosSociais() {
                     onClick={() => setProjetoSocial(opcao)}
                     className={`px-4 py-2 rounded-lg border ${
                       projetoSocial === opcao 
-                        ? 'bg-orange-100 border-orange-500 text-orange-700' 
+                        ? 'bg-green-100 border-green-500 text-green-700' 
                         : 'bg-gray-100 border-gray-300 text-gray-700'
                     }`}
                   >
@@ -119,7 +119,7 @@ export default function VinculosSociais() {
                     onClick={() => toggleCuidadoEspecial(opcao)}
                     className={`px-4 py-2 rounded-lg border flex items-center ${
                       cuidadoEspecial.includes(opcao)
-                        ? 'bg-orange-100 border-orange-500 text-orange-700' 
+                        ? 'bg-green-100 border-green-500 text-green-700' 
                         : 'bg-gray-100 border-gray-300 text-gray-700'
                     }`}
                   >
@@ -137,7 +137,7 @@ export default function VinculosSociais() {
                 onClick={() => setCulturaPopular(!culturaPopular)}
                 className={`px-4 py-2 rounded-lg border flex items-center ${
                   culturaPopular
-                    ? 'bg-orange-100 border-orange-500 text-orange-700' 
+                    ? 'bg-green-100 border-green-500 text-green-700' 
                     : 'bg-gray-100 border-gray-300 text-gray-700'
                 }`}
               >
@@ -153,7 +153,7 @@ export default function VinculosSociais() {
                 onClick={() => setAcaoAmbiental(!acaoAmbiental)}
                 className={`px-4 py-2 rounded-lg border flex items-center ${
                   acaoAmbiental
-                    ? 'bg-orange-100 border-orange-500 text-orange-700' 
+                    ? 'bg-green-100 border-green-500 text-green-700' 
                     : 'bg-gray-100 border-gray-300 text-gray-700'
                 }`}
               >
@@ -169,7 +169,7 @@ export default function VinculosSociais() {
                 onClick={() => setPovosTradicionais(!povosTradicionais)}
                 className={`px-4 py-2 rounded-lg border flex items-center ${
                   povosTradicionais
-                    ? 'bg-orange-100 border-orange-500 text-orange-700' 
+                    ? 'bg-green-100 border-green-500 text-green-700' 
                     : 'bg-gray-100 border-gray-300 text-gray-700'
                 }`}
               >
@@ -188,7 +188,7 @@ export default function VinculosSociais() {
                     onClick={() => setGenero(opcao)}
                     className={`px-3 py-2 rounded-lg border flex items-center justify-center ${
                       genero === opcao
-                        ? 'bg-orange-100 border-orange-500 text-orange-700' 
+                        ? 'bg-green-100 border-green-500 text-green-700' 
                         : 'bg-gray-100 border-gray-300 text-gray-700'
                     }`}
                   >
@@ -209,7 +209,7 @@ export default function VinculosSociais() {
                     onClick={() => setRacaCor(opcao)}
                     className={`px-3 py-2 rounded-lg border flex items-center justify-center ${
                       racaCor === opcao
-                        ? 'bg-orange-100 border-orange-500 text-orange-700' 
+                        ? 'bg-green-100 border-green-500 text-green-700' 
                         : 'bg-gray-100 border-gray-300 text-gray-700'
                     }`}
                   >
@@ -227,7 +227,7 @@ export default function VinculosSociais() {
                 onClick={() => setReligiao(!religiao)}
                 className={`px-4 py-2 rounded-lg border flex items-center ${
                   religiao
-                    ? 'bg-orange-100 border-orange-500 text-orange-700' 
+                    ? 'bg-green-100 border-green-500 text-green-700' 
                     : 'bg-gray-100 border-gray-300 text-gray-700'
                 }`}
               >
@@ -247,7 +247,7 @@ export default function VinculosSociais() {
             </button>
             <button
               onClick={() => setIsOpen(false)}
-              className="px-4 py-2 bg-orange-600 text-white font-medium rounded-lg hover:bg-orange-700"
+              className="px-4 py-2 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700"
             >
               Confirmar
             </button>

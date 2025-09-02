@@ -44,7 +44,7 @@ export default function AlbumManager({
         <h3 className="font-bold text-lg">Seus Álbuns</h3>
         <button
           onClick={() => setIsOpen(true)}
-          className="flex items-center gap-2 bg-orange-600 text-white px-3 py-1.5 rounded text-sm"
+          className="flex items-center gap-2 bg-green-600 text-white px-3 py-1.5 rounded text-sm"
         >
           <PlusCircle size={16} /> Novo
         </button>
@@ -101,7 +101,7 @@ export default function AlbumManager({
                 className={`w-full py-3 rounded-lg font-medium ${
                   !name.trim()
                     ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                    : "bg-orange-600 text-white hover:bg-orange-700"
+                    : "bg-green-600 text-white hover:bg-green-700"
                 }`}
               >
                 Criar Álbum

@@ -31,7 +31,7 @@ export function GooGroupsToast({
           className={clsx(
             "fixed bottom-6 right-6 z-50 max-w-sm p-4 rounded-xl shadow-xl border-l-8 text-sm",
             {
-              "bg-orange-100 border-orange-600 text-orange-800": type === "success",
+              "bg-green-100 border-green-600 text-green-800": type === "success",
               "bg-blue-100 border-blue-600 text-blue-800": type === "info",
               "bg-yellow-100 border-yellow-600 text-yellow-800": type === "warning",
               "bg-red-100 border-red-600 text-red-800": type === "error",

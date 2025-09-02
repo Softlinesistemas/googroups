@@ -9,17 +9,27 @@ import { ActionProvider } from './context/ActionContext'
 import { Header } from '../components/Header'
 import { BottomNav } from '../components/navigation/BottomNav'
 import { AjudaLinks } from '@/components/AjudaLinks'
+import { SplashScreen } from '@/components/SplashScreen' // ✅
+import WelcomeModal from '@/components/WelcomeModal'
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="pt-BR" className="overflow-x-hidden">
-      <body className="bg-[#f09953] min-h-screen w-full max-w-screen overflow-x-hidden flex flex-col pb-16 relative">
+      <meta name="theme-color" content="#e7c465" />
+      <link rel="manifest" href="/manifest.json" />
+      <link rel="icon" href="/logo-128x128" />
+      <link rel="apple-touch-icon" href="/logo-128x128" />
 
-        <AppProvider> {/* ✅ Seu provider original preservado */}
-          <AuthProvider> {/* ✅ Avatar do usuário */}
-            <NotificationProvider> {/* ✅ Badge dinâmica */}
-              <ActionProvider> {/* ✅ Ação global ativa */}
+      <body className="bg-[#e7c465] min-h-screen w-full overflow-x-hidden flex flex-col relative">
+        
+        <SplashScreen /> 
+        
+              <WelcomeModal />
 
+        <AppProvider>
+          <AuthProvider>
+            <NotificationProvider>
+              <ActionProvider>
                 <Header />
 
                 <Suspense fallback={

@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { Calendar, Camera, Image, X, Grid, Check } from "react-feather";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import { MainBanner } from "@/components/MainBanner";
 
 interface Photo {
   id: string;
@@ -101,14 +102,15 @@ export default function EditarFeedPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 mt-8">
+      <MainBanner />
       {/* Cabeçalho */}
       <header className="sticky top-0 bg-white shadow-sm z-10">
         <div className="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
           <button className="text-gray-500">
             <X size={24} />
           </button>
-          <h1 className="text-xl font-bold text-orange-700">Editar Feed</h1>
+          <h1 className="text-xl font-bold text-green-700">Editar Feed</h1>
           <div className="w-6" />
         </div>
       </header>
@@ -125,7 +127,7 @@ export default function EditarFeedPage() {
                 onClick={() => handleDateSelect(days)}
                 className={`px-4 py-2 rounded-lg border ${
                   selectedDate?.getDate() === new Date().getDate() + days
-                    ? 'bg-orange-600 text-white border-orange-600'
+                    ? 'bg-green-600 text-white border-green-600'
                     : 'bg-white border-gray-300'
                 }`}
               >
@@ -136,7 +138,7 @@ export default function EditarFeedPage() {
           
           <button
             onClick={() => setShowDatePicker(!showDatePicker)}
-            className="flex items-center gap-2 text-orange-600 font-medium"
+            className="flex items-center gap-2 text-green-600 font-medium"
           >
             <Calendar size={18} />
             {selectedDate 
@@ -164,7 +166,7 @@ export default function EditarFeedPage() {
               value={caption}
               onChange={(e) => setCaption(e.target.value)}
               placeholder="Nosso encontro... percebo que qualquer atividade física é uma decisão honesta e pessoal e intransferível) de se manter determinado no com"
-              className="w-full h-40 p-4 border border-gray-300 rounded-lg resize-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+              className="w-full h-40 p-4 border border-gray-300 rounded-lg resize-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
               maxLength={maxCaptionLength}
             />
             <div className="absolute bottom-3 right-3 text-sm text-gray-500">
@@ -184,7 +186,7 @@ export default function EditarFeedPage() {
               onClick={() => setShowGallery(true)}
               className="flex flex-col items-center justify-center gap-2 p-4 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
             >
-              <Grid size={24} className="text-orange-600" />
+              <Grid size={24} className="text-green-600" />
               <span className="text-xs">Galeria GooGroups</span>
             </button>
             
@@ -193,7 +195,7 @@ export default function EditarFeedPage() {
               onClick={openCamera}
               className="flex flex-col items-center justify-center gap-2 p-4 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
             >
-              <Camera size={24} className="text-orange-600" />
+              <Camera size={24} className="text-green-600" />
               <span className="text-xs">Câmera</span>
             </button>
             
@@ -202,7 +204,7 @@ export default function EditarFeedPage() {
               onClick={openDeviceGallery}
               className="flex flex-col items-center justify-center gap-2 p-4 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
             >
-              <Image size={24} className="text-orange-600" />
+              <Image size={24} className="text-green-600" />
               <span className="text-xs">Galeria do Dispositivo</span>
             </button>
           </div>
@@ -258,7 +260,7 @@ export default function EditarFeedPage() {
           className={`w-full py-4 rounded-lg font-bold text-lg flex items-center justify-center gap-2 ${
             !selectedDate || caption.length === 0 || selectedPhotos.length === 0
               ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-              : "bg-orange-600 text-white hover:bg-orange-700"
+              : "bg-green-600 text-white hover:bg-green-700"
           }`}
         >
           Publicar FEED
@@ -295,14 +297,14 @@ export default function EditarFeedPage() {
                     alt="Foto da galeria"
                     className={`w-full h-full object-cover rounded-lg ${
                       selectedPhotos.some(p => p.id === photo.id) 
-                        ? 'ring-4 ring-orange-500' 
+                        ? 'ring-4 ring-green-500' 
                         : ''
                     }`}
                   />
                   
                   {/* Indicador de seleção */}
                   {selectedPhotos.some(p => p.id === photo.id) && (
-                    <div className="absolute top-2 right-2 bg-orange-500 text-white rounded-full w-6 h-6 flex items-center justify-center">
+                    <div className="absolute top-2 right-2 bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center">
                       <Check size={14} />
                     </div>
                   )}
@@ -314,7 +316,7 @@ export default function EditarFeedPage() {
             <div className="sticky bottom-0 bg-white py-4 border-t">
               <button
                 onClick={() => setShowGallery(false)}
-                className="w-full py-3 bg-orange-600 text-white rounded-lg font-medium"
+                className="w-full py-3 bg-green-600 text-white rounded-lg font-medium"
               >
                 Confirmar Seleção
               </button>

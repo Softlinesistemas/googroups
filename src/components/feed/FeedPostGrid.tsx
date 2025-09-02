@@ -23,7 +23,7 @@ export const FeedPostCard = ({ imageUrl, date, text }: FeedPostCardProps) => {
   };
 
   return (
-    <div className="bg-orange-100 rounded-xl shadow p-2 w-full max-w-md mx-auto mb-4 cursor-pointer">
+    <div className="bg-green-100 rounded-xl shadow p-2 w-full max-w-md mx-auto mb-4 cursor-pointer">
       {/* Imagem */}
       <div className="rounded overflow-hidden mb-2">
         <img src={imageUrl} alt="Imagem do post" className="w-full object-cover rounded-t" />
@@ -44,7 +44,7 @@ export const FeedPostCard = ({ imageUrl, date, text }: FeedPostCardProps) => {
             e.stopPropagation();
             toggleLike();
           }}
-          className="text-xl text-orange-800 hover:scale-110 transition"
+          className="text-xl text-green-800 hover:scale-110 transition"
         >
           {liked ? <FaHeart className="text-red-500" /> : <FaRegHeart />}
         </button>
@@ -54,7 +54,7 @@ export const FeedPostCard = ({ imageUrl, date, text }: FeedPostCardProps) => {
             e.stopPropagation();
             toggleFavorite();
           }}
-          className="text-xl text-orange-800 hover:scale-110 transition"
+          className="text-xl text-green-800 hover:scale-110 transition"
         >
           {favorited ? <FaStar className="text-yellow-500" /> : <FaRegStar />}
         </button>

@@ -18,7 +18,7 @@ const initialMembers: Member[] = [
   { name: 'Ana', role: 'member' },
 ];
 
-// Lista de amigos do admin (para adicionar)
+// Lista de AMIGOS do admin (para adicionar)
 const friendsList = ['Carlos', 'Fernanda', 'Lucas', 'Juliana'];
 
 const roleLabel = {
@@ -34,12 +34,12 @@ const MemberList: React.FC = () => {
   const [confirmRemove, setConfirmRemove] = useState<string | null>(null);
   const [currentUser, setCurrentUser] = useState('Ramon'); // Mock: o Ramon é admin no exemplo
 
-  // Lista de amigos que ainda não estão no grupo
+  // Lista de AMIGOS que ainda não estão no grupo
   const availableFriends = friendsList.filter(
     (friend) => !members.find((m) => m.name === friend)
   );
 
-  // Seleciona/deseleciona amigos para adicionar
+  // Seleciona/deseleciona AMIGOS para adicionar
   const toggleFriendSelection = (friend: string) => {
     setSelectedFriends((prev) =>
       prev.includes(friend) ? prev.filter((f) => f !== friend) : [...prev, friend]
@@ -112,7 +112,7 @@ const MemberList: React.FC = () => {
                   member.role === 'admin'
                     ? 'text-pink-700 font-bold'
                     : member.role === 'moderator'
-                    ? 'text-orange-600'
+                    ? 'text-green-600'
                     : 'text-gray-800'
                 }`}
               >
@@ -162,7 +162,7 @@ const MemberList: React.FC = () => {
       {isAdmin && (
         <button
           onClick={() => setShowAddModal(true)}
-          className="mt-4 bg-orange-600 hover:bg-orange-700 text-white px-3 py-1 rounded flex items-center gap-2"
+          className="mt-4 bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded flex items-center gap-2"
         >
           <FiPlus /> Adicionar Membros
         </button>
@@ -175,7 +175,7 @@ const MemberList: React.FC = () => {
         title="Adicionar Membros"
       >
         {availableFriends.length === 0 ? (
-          <p className="text-gray-500">Nenhum amigo disponível para adicionar.</p>
+          <p className="text-gray-500">Nenhum Amigo disponível para adicionar.</p>
         ) : (
           <ul className="space-y-2">
             {availableFriends.map((friend, idx) => (
@@ -183,12 +183,12 @@ const MemberList: React.FC = () => {
                 key={idx}
                 onClick={() => toggleFriendSelection(friend)}
                 className={`flex items-center justify-between border-b pb-1 cursor-pointer rounded p-1 ${
-                  selectedFriends.includes(friend) ? 'bg-orange-100' : 'hover:bg-gray-100'
+                  selectedFriends.includes(friend) ? 'bg-green-100' : 'hover:bg-gray-100'
                 }`}
               >
                 <span>{friend}</span>
                 {selectedFriends.includes(friend) && (
-                  <span className="text-orange-500 text-xs">Selecionado</span>
+                  <span className="text-green-500 text-xs">Selecionado</span>
                 )}
               </li>
             ))}
@@ -206,7 +206,7 @@ const MemberList: React.FC = () => {
             onClick={handleAddMembers}
             disabled={selectedFriends.length === 0}
             className={`text-white text-sm px-3 py-1 rounded ${
-              selectedFriends.length > 0 ? 'bg-orange-600 hover:bg-orange-700' : 'bg-gray-300 cursor-not-allowed'
+              selectedFriends.length > 0 ? 'bg-green-600 hover:bg-green-700' : 'bg-gray-300 cursor-not-allowed'
             }`}
           >
             Adicionar
