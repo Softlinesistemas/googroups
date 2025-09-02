@@ -16,7 +16,7 @@ export const AuthScreen = () => {
           loop
           muted
         >
-          <source src="/images/video/teste.mp4" type="video/mp4" />
+          <source src="/images/video/groups.mp4" type="video/mp4" />
           Seu navegador não suporta vídeos.
         </video>
       )}

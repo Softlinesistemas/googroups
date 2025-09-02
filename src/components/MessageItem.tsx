@@ -35,7 +35,7 @@ const MessageItem: React.FC<Props> = ({ message, onFavorite, onDelete, onReact }
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, x: 50 }}
-      className={`relative p-2 rounded-lg text-sm shadow ${message.from === 'user' ? 'bg-green-100 self-end' : 'bg-white self-start'}`}
+      className={`relative p-2 rounded-lg text-sm shadow ${message.from === 'user' ? 'bg-orange-100 self-end' : 'bg-white self-start'}`}
     >
       <p>{message.text}</p>
       <div className="flex items-center justify-between mt-1 text-xs text-gray-500">
